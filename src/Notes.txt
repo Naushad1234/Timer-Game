@@ -1,0 +1,42 @@
+Refs: Use to manually change the DOM(Document Object Model)...........
+import { useState } from "react";
+
+export default function Player() {
+  const [enteredPlayerName, setEnteredPlayerName] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  function handleChange(event) {
+    setSubmitted(false);
+    setEnteredPlayerName(event.target.value);
+  }
+
+  function handleClick() {
+    setSubmitted(true);
+  }
+  return (
+    <section id="player">
+      <h2>Welcome {submitted ? enteredPlayerName : "unknown entity"}</h2>
+      <p>
+        <input type="text" onChange={handleChange} value={enteredPlayerName} />
+        <button onClick={handleClick}>Set Name</button>
+      </p>
+    </section>
+  );
+}
+
+
+Where Refs comes as handy.....
+
+Refs are special kind of value just as a state and a variable
+ref is a specail prop.
+The value that you are getting from the useRef Hooks is always an Object.......
+By this you can access all the properties and methods from the input field...
+Alternate Syntax: enteredPlayerName ?? 'unknown entity'
+
+Difference between refs and state....
+The connection takes place for ref after the component get rerendered.....
+The componentdo not get rerendered whenever the ref changes
+
+State should not be used the behind the scenes values that have no direct UI impact......
+Like State value the value is not lost in refs
+
+//Forwarding refs to Custom Componnets
